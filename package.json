@@ -1,0 +1,31 @@
+{
+  "name": "aff-2026-interactive-wallchart",
+  "version": "1.0.0",
+  "description": "A fully interactive AFF Hyundai Cup 2026 Wallchart web application featuring real-time group standings, automatic tie-breaker calculation, and a two-legged knockout bracket calculator with extra time and penalty shootout support.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx browser-sync start --server --files 'index.html, style.css, app.js'",
+    "serve": "npx browser-sync start --server --files 'index.html, style.css, app.js'"
+  },
+  "keywords": [
+    "aff-cup",
+    "aff-2026",
+    "wallchart",
+    "football",
+    "asean",
+    "hyundai-cup",
+    "standings",
+    "knockout-bracket",
+    "sports-dashboard"
+  ],
+  "author": "Bahlil",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bahlil/aff-2026-interactive-wallchart.git"
+  },
+  "homepage": "https://bahlil.github.io/aff-2026-interactive-wallchart/",
+  "devDependencies": {
+    "browser-sync": "^3.0.2"
+  }
+}
