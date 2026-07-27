@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>AFF Cup 2026 Interactive Wallchart</title>
+  <meta name="description" content="Live, self-calculating wallchart for the AFF Cup 2026 (ASEAN Hyundai Cup) — real-time group standings, tie-breaker rules, and a two-legged knockout bracket calculator.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e293b'/%3E%3Ccircle cx='50' cy='42' r='22' fill='none' stroke='%2310b981' stroke-width='6'/%3E%3Crect x='38' y='64' width='24' height='26' rx='4' fill='%233b82f6'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="brand-badge">AFF 2026</span>
+        <div class="header-titles">
+          <h1>AFF CUP 2026 INTERACTIVE WALLCHART</h1>
+          <p class="header-subtitle">ASEAN Hyundai Cup &middot; Group Stage &amp; Knockout Bracket Tracker</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button type="button" id="theme-toggle-btn" class="btn btn-ghost" aria-label="Toggle dark mode">
+          <span id="theme-icon">🌙</span>
+        </button>
+        <button type="button" id="reset-btn" class="btn btn-danger">
+          <span class="btn-icon">⟳</span> Reset All Scores
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard">
+
+    <!-- ============ STATUS STRIP ============ -->
+    <section class="status-strip" aria-label="Tournament status">
+      <div class="status-pill">
+        <span class="status-dot"></span> Group Stage Live
+      </div>
+      <div class="status-item">Matchday reference: <strong>27 July 2026</strong></div>
+      <div class="status-item">Format: <strong>2 Groups of 5</strong> &rarr; Semifinals (2-leg) &rarr; Final (2-leg)</div>
+    </section>
+
+    <!-- ============ GROUP STANDINGS + FIXTURES ============ -->
+    <section class="groups-grid" aria-label="Group standings and fixtures">
+
+      <div class="group-card" id="group-card-A">
+        <div class="group-card-header group-a-accent">
+          <h2>Group A</h2>
+          <span class="group-teams-count">5 Teams</span>
+        </div>
+        <div class="table-wrap">
+          <table class="standings-table" id="standings-table-A">
+            <thead>
+              <tr>
+                <th class="col-pos">#</th>
+                <th class="col-team">Team</th>
+                <th>P</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>GF</th>
+                <th>GA</th>
+                <th>GD</th>
+                <th class="col-pts">Pts</th>
+              </tr>
+            </thead>
+            <tbody id="standings-body-A"></tbody>
+          </table>
+        </div>
+        <div class="fixtures-block">
+          <h3 class="fixtures-title">Fixtures</h3>
+          <div class="fixtures-list" id="fixtures-list-A"></div>
+        </div>
+      </div>
+
+      <div class="group-card" id="group-card-B">
+        <div class="group-card-header group-b-accent">
+          <h2>Group B</h2>
+          <span class="group-teams-count">5 Teams</span>
+        </div>
+        <div class="table-wrap">
+          <table class="standings-table" id="standings-table-B">
+            <thead>
+              <tr>
+                <th class="col-pos">#</th>
+                <th class="col-team">Team</th>
+                <th>P</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>GF</th>
+                <th>GA</th>
+                <th>GD</th>
+                <th class="col-pts">Pts</th>
+              </tr>
+            </thead>
+            <tbody id="standings-body-B"></tbody>
+          </table>
+        </div>
+        <div class="fixtures-block">
+          <h3 class="fixtures-title">Fixtures</h3>
+          <div class="fixtures-list" id="fixtures-list-B"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============ KNOCKOUT BRACKET ============ -->
+    <section class="bracket-section" aria-label="Knockout bracket">
+      <div class="bracket-header">
+        <h2>Knockout Bracket</h2>
+        <p class="bracket-subtitle">Two-legged ties &middot; aggregate score &middot; extra time &amp; penalties if required</p>
+      </div>
+
+      <div class="bracket-grid">
+
+        <div class="bracket-column bracket-column-sf">
+          <div class="bracket-round-label">Semifinals</div>
+          <div class="tie-card" id="tie-sf1"></div>
+          <div class="tie-card" id="tie-sf2"></div>
+        </div>
+
+        <div class="bracket-connector" aria-hidden="true">
+          <svg viewBox="0 0 100 240" preserveAspectRatio="none" class="connector-svg">
+            <path d="M0,40 H35 V120 H65" fill="none" stroke-width="3" class="connector-line"/>
+            <path d="M0,200 H35 V120 H65" fill="none" stroke-width="3" class="connector-line"/>
+          </svg>
+        </div>
+
+        <div class="bracket-column bracket-column-final">
+          <div class="bracket-round-label">Final</div>
+          <div class="tie-card tie-card-final" id="tie-final"></div>
+          <div class="champion-slot" id="champion-slot">
+            <span class="champion-label">Champion</span>
+            <span class="champion-name" id="champion-name">To be decided</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <p class="fine-print">Scores are stored locally in your browser (localStorage) and are never sent anywhere. Use "Reset All Scores" to restore the original 2026 seed data.</p>
+
+  </main>
+
+  <footer class="app-footer">
+    <p>AFF Cup 2026 Interactive Wallchart &middot; Fan-made tracker, not affiliated with the ASEAN Football Federation.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
