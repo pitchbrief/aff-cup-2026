@@ -11,6 +11,7 @@
      ------------------------------------------------------------------------ */
 
   var STORAGE_KEY = "affWallchart2026_v1";
+  var TODAY_DATE = "27 Jul"; // reference "today" used to flag same-day fixtures as TODAY vs UPCOMING
 
   var TEAMS = {
     IDN: { name: "Indonesia", flag: "\uD83C\uDDEE\uD83C\uDDE9" },
@@ -39,27 +40,27 @@
 
   // Original seed fixtures — used both as initial state and as the "Reset" target.
   var SEED_FIXTURES = [
-    { id: "A1", group: "A", date: "24 Jul", home: "CAM", away: "SGP", homeScore: 1, awayScore: 2, tv: ["inews", "gtv"] },
-    { id: "A2", group: "A", date: "24 Jul", home: "TLS", away: "VIE", homeScore: 0, awayScore: 7, tv: ["inews", "gtv"] },
-    { id: "A3", group: "A", date: "27 Jul", home: "SGP", away: "TLS", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "A4", group: "A", date: "27 Jul", home: "IDN", away: "CAM", homeScore: null, awayScore: null, tv: ["rcti"] },
-    { id: "A5", group: "A", date: "31 Jul", home: "TLS", away: "IDN", homeScore: null, awayScore: null, tv: ["rcti"] },
-    { id: "A6", group: "A", date: "31 Jul", home: "VIE", away: "SGP", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "A7", group: "A", date: "03 Aug", home: "CAM", away: "TLS", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "A8", group: "A", date: "03 Aug", home: "IDN", away: "VIE", homeScore: null, awayScore: null, tv: ["rcti"] },
-    { id: "A9", group: "A", date: "07 Aug", home: "SGP", away: "IDN", homeScore: null, awayScore: null, tv: ["rcti"] },
-    { id: "A10", group: "A", date: "07 Aug", home: "VIE", away: "CAM", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "A1", group: "A", date: "24 Jul", time: "15:30 WIB", home: "CAM", away: "SGP", homeScore: 1, awayScore: 2, tv: ["inews", "gtv"] },
+    { id: "A2", group: "A", date: "24 Jul", time: "19:30 WIB", home: "TLS", away: "VIE", homeScore: 0, awayScore: 7, tv: ["inews", "gtv"] },
+    { id: "A3", group: "A", date: "27 Jul", time: "15:30 WIB", home: "SGP", away: "TLS", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "A4", group: "A", date: "27 Jul", time: "19:30 WIB", home: "IDN", away: "CAM", homeScore: null, awayScore: null, tv: ["rcti"] },
+    { id: "A5", group: "A", date: "31 Jul", time: "15:30 WIB", home: "TLS", away: "IDN", homeScore: null, awayScore: null, tv: ["rcti"] },
+    { id: "A6", group: "A", date: "31 Jul", time: "19:30 WIB", home: "VIE", away: "SGP", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "A7", group: "A", date: "03 Aug", time: "15:30 WIB", home: "CAM", away: "TLS", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "A8", group: "A", date: "03 Aug", time: "19:30 WIB", home: "IDN", away: "VIE", homeScore: null, awayScore: null, tv: ["rcti"] },
+    { id: "A9", group: "A", date: "07 Aug", time: "15:30 WIB", home: "SGP", away: "IDN", homeScore: null, awayScore: null, tv: ["rcti"] },
+    { id: "A10", group: "A", date: "07 Aug", time: "19:30 WIB", home: "VIE", away: "CAM", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
 
-    { id: "B1", group: "B", date: "25 Jul", home: "MYA", away: "MAS", homeScore: 1, awayScore: 2, tv: ["inews", "gtv"] },
-    { id: "B2", group: "B", date: "25 Jul", home: "LAO", away: "THA", homeScore: 0, awayScore: 5, tv: ["inews", "gtv"] },
-    { id: "B3", group: "B", date: "28 Jul", home: "PHI", away: "MYA", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "B4", group: "B", date: "28 Jul", home: "MAS", away: "LAO", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "B5", group: "B", date: "01 Aug", home: "LAO", away: "PHI", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "B6", group: "B", date: "01 Aug", home: "THA", away: "MAS", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "B7", group: "B", date: "04 Aug", home: "MYA", away: "LAO", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "B8", group: "B", date: "04 Aug", home: "PHI", away: "THA", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "B9", group: "B", date: "08 Aug", home: "THA", away: "MYA", homeScore: null, awayScore: null, tv: ["gtv", "inews"] },
-    { id: "B10", group: "B", date: "08 Aug", home: "MAS", away: "PHI", homeScore: null, awayScore: null, tv: ["gtv", "inews"] }
+    { id: "B1", group: "B", date: "25 Jul", time: "15:30 WIB", home: "MYA", away: "MAS", homeScore: 1, awayScore: 2, tv: ["inews", "gtv"] },
+    { id: "B2", group: "B", date: "25 Jul", time: "19:30 WIB", home: "LAO", away: "THA", homeScore: 0, awayScore: 5, tv: ["inews", "gtv"] },
+    { id: "B3", group: "B", date: "28 Jul", time: "15:30 WIB", home: "PHI", away: "MYA", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "B4", group: "B", date: "28 Jul", time: "19:30 WIB", home: "MAS", away: "LAO", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "B5", group: "B", date: "01 Aug", time: "15:30 WIB", home: "LAO", away: "PHI", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "B6", group: "B", date: "01 Aug", time: "19:30 WIB", home: "THA", away: "MAS", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "B7", group: "B", date: "04 Aug", time: "15:30 WIB", home: "MYA", away: "LAO", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "B8", group: "B", date: "04 Aug", time: "19:30 WIB", home: "PHI", away: "THA", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "B9", group: "B", date: "08 Aug", time: "15:30 WIB", home: "THA", away: "MYA", homeScore: null, awayScore: null, tv: ["gtv", "inews"] },
+    { id: "B10", group: "B", date: "08 Aug", time: "19:30 WIB", home: "MAS", away: "PHI", homeScore: null, awayScore: null, tv: ["gtv", "inews"] }
   ];
 
   var SEED_KNOCKOUT = {
@@ -70,8 +71,8 @@
       awaySlot: "Runner-up Group B",
       homeTeam: null,
       awayTeam: null,
-      leg1Date: "15 Aug",
-      leg2Date: "18 Aug",
+      leg1Date: "15 Aug \u2022 19:30 WIB",
+      leg2Date: "18 Aug \u2022 19:30 WIB",
       leg1Home: null, leg1Away: null,
       leg2Home: null, leg2Away: null,
       etHome: null, etAway: null,
@@ -84,8 +85,8 @@
       awaySlot: "Runner-up Group A",
       homeTeam: null,
       awayTeam: null,
-      leg1Date: "16 Aug",
-      leg2Date: "19 Aug",
+      leg1Date: "16 Aug \u2022 19:30 WIB",
+      leg2Date: "19 Aug \u2022 19:30 WIB",
       leg1Home: null, leg1Away: null,
       leg2Home: null, leg2Away: null,
       etHome: null, etAway: null,
@@ -98,8 +99,8 @@
       awaySlot: "Winner SF2",
       homeTeam: null,
       awayTeam: null,
-      leg1Date: "22 Aug",
-      leg2Date: "26 Aug",
+      leg1Date: "22 Aug \u2022 19:30 WIB",
+      leg2Date: "26 Aug \u2022 19:30 WIB",
       leg1Home: null, leg1Away: null,
       leg2Home: null, leg2Away: null,
       etHome: null, etAway: null,
@@ -367,6 +368,16 @@
     return (v === null || v === undefined) ? "" : v;
   }
 
+  function fixtureStatus(fx) {
+    if (fx.homeScore !== null && fx.homeScore !== "" && fx.awayScore !== null && fx.awayScore !== "") {
+      return { label: "FT", css: "status-ft" };
+    }
+    if (fx.date === TODAY_DATE) {
+      return { label: "Today", css: "status-today" };
+    }
+    return { label: "Upcoming", css: "status-upcoming" };
+  }
+
   function renderFixturesList(group) {
     var container = document.getElementById("fixtures-list-" + group);
     var html = "";
@@ -377,9 +388,15 @@
 
       var home = TEAMS[fx.home];
       var away = TEAMS[fx.away];
+      var dateParts = fx.date.split(" ");
+      var status = fixtureStatus(fx);
 
       html += "<div class=\"fixture-row\">";
-      html += "<span class=\"fixture-date\">" + fx.date + "</span>";
+      html += "<span class=\"fixture-date-tile\">";
+      html += "<span class=\"tile-day\">" + dateParts[0] + "</span>";
+      html += "<span class=\"tile-month\">" + dateParts[1] + "</span>";
+      html += "<span class=\"tile-time\">" + fx.time + "</span>";
+      html += "</span>";
       html += "<span class=\"fixture-teams\">";
       html += "<span>" + home.flag + "</span><span class=\"fixture-team-name\">" + home.name + "</span>";
       html += "<span class=\"fixture-vs\">vs</span>";
@@ -390,6 +407,7 @@
       html += "<span class=\"score-dash\">&ndash;</span>";
       html += "<input type=\"number\" min=\"0\" max=\"99\" inputmode=\"numeric\" class=\"score-input\" data-fixture=\"" + fx.id + "\" data-side=\"away\" value=\"" + scoreValue(fx.awayScore) + "\" aria-label=\"" + away.name + " score\">";
       html += "</span>";
+      html += "<span class=\"status-badge " + status.css + "\">" + status.label + "</span>";
       html += renderTvBadges(fx.tv);
       html += "</div>";
     }
@@ -557,13 +575,20 @@
 
     var canEnterScores = !!(tie.homeTeam && tie.awayTeam);
 
+    if (canEnterScores) {
+      html += "<div class=\"tie-dates-row\">";
+      html += "<span><strong>Leg 1</strong> &middot; " + tie.leg1Date + "</span>";
+      html += "<span><strong>Leg 2</strong> &middot; " + tie.leg2Date + "</span>";
+      html += "</div>";
+    }
+
     // Home team row
     html += "<div class=\"tie-team-row\">";
     html += teamLabel(tie.homeTeam, tie.homeSlot);
     if (canEnterScores) {
       html += "<span class=\"tie-legs\">";
-      html += legInput(tie.id, "leg1Home", tie.leg1Home, "L1 (" + tie.leg1Date + ")");
-      html += legInput(tie.id, "leg2Home", tie.leg2Home, "L2 (" + tie.leg2Date + ")");
+      html += legInput(tie.id, "leg1Home", tie.leg1Home, "L1");
+      html += legInput(tie.id, "leg2Home", tie.leg2Home, "L2");
       html += "</span>";
     }
     html += "</div>";
@@ -573,8 +598,8 @@
     html += teamLabel(tie.awayTeam, tie.awaySlot);
     if (canEnterScores) {
       html += "<span class=\"tie-legs\">";
-      html += legInput(tie.id, "leg1Away", tie.leg1Away, "L1 (" + tie.leg1Date + ")");
-      html += legInput(tie.id, "leg2Away", tie.leg2Away, "L2 (" + tie.leg2Date + ")");
+      html += legInput(tie.id, "leg1Away", tie.leg1Away, "L1");
+      html += legInput(tie.id, "leg2Away", tie.leg2Away, "L2");
       html += "</span>";
     }
     html += "</div>";
