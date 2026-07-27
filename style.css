@@ -42,6 +42,10 @@
   --radius-md: 10px;
   --radius-lg: 16px;
   --radius-sm: 6px;
+
+  /* Typography: condensed scoreboard display face + Inter for body/data */
+  --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 [data-theme="dark"] {
@@ -64,7 +68,7 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
   background: var(--bg-page);
   color: var(--text-primary);
   transition: background-color 0.2s ease, color 0.2s ease;
@@ -110,22 +114,26 @@ a {
   min-width: 0;
 }
 
-.brand-badge {
+.brand-shield {
   flex-shrink: 0;
-  background: var(--green-500);
-  color: var(--navy-900);
-  font-weight: 800;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  padding: 6px 10px;
-  border-radius: var(--radius-sm);
+  width: 40px;
+  height: 46px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.brand-shield svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .header-titles h1 {
   margin: 0;
-  font-size: clamp(16px, 2.4vw, 24px);
-  letter-spacing: 0.02em;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3vw, 30px);
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  line-height: 1;
 }
 
 .header-subtitle {
@@ -185,6 +193,76 @@ a {
 
 .btn-icon {
   font-size: 15px;
+}
+
+/* ==========================================================================
+   PITCH HERO BAND (signature element — mowed-grass pitch with line markings)
+   ========================================================================== */
+
+.pitch-hero {
+  position: relative;
+  height: 110px;
+  overflow: hidden;
+  background-color: #146c43;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #15794a 0px,
+    #15794a 60px,
+    #126b41 60px,
+    #126b41 120px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pitch-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pitch-line {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.38);
+  stroke-width: 2.5;
+}
+
+.pitch-dot {
+  fill: rgba(255, 255, 255, 0.38);
+}
+
+.pitch-hero-text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.pitch-hero-kicker {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.pitch-hero-title {
+  font-family: var(--font-display);
+  color: #ffffff;
+  font-size: clamp(34px, 6vw, 56px);
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+}
+
+@media (max-width: 560px) {
+  .pitch-hero {
+    height: 84px;
+  }
 }
 
 /* ==========================================================================
@@ -273,9 +351,17 @@ a {
 
 .group-card-header h2 {
   margin: 0;
-  font-size: 17px;
-  font-weight: 800;
-  letter-spacing: 0.02em;
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.group-ball {
+  font-size: 16px;
 }
 
 .group-a-accent {
@@ -350,7 +436,10 @@ a {
 }
 
 .standings-table td.col-pts {
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.03em;
+  font-weight: 400;
   color: var(--navy-900);
 }
 
@@ -430,11 +519,65 @@ a {
   flex-wrap: wrap;
 }
 
-.fixture-date {
-  font-size: 11px;
+.fixture-date-tile {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  padding: 5px 4px;
+  background: var(--navy-800);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  line-height: 1.05;
+}
+
+.tile-day {
+  font-family: var(--font-display);
+  font-size: 19px;
+  letter-spacing: 0.02em;
+}
+
+.tile-month {
+  font-size: 9px;
   font-weight: 700;
-  color: var(--text-secondary);
-  min-width: 44px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-400);
+}
+
+.tile-time {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--gray-300);
+  margin-top: 2px;
+}
+
+.status-badge {
+  flex-shrink: 0;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+
+.status-badge.status-ft {
+  background: rgba(100, 116, 139, 0.16);
+  color: var(--gray-500);
+}
+
+.status-badge.status-today {
+  background: rgba(239, 68, 68, 0.14);
+  color: var(--red-500);
+  animation: pulse-dot 1.6s infinite;
+}
+
+.status-badge.status-upcoming {
+  background: rgba(59, 130, 246, 0.12);
+  color: var(--blue-500);
 }
 
 .fixture-teams {
@@ -544,8 +687,10 @@ a {
 
 .bracket-header h2 {
   margin: 0;
-  font-size: 19px;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
   color: var(--text-primary);
 }
 
@@ -618,8 +763,10 @@ a {
 }
 
 .champion-name {
-  font-size: 16px;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.03em;
+  font-weight: 400;
 }
 
 /* ---- Tie card ---- */
@@ -658,6 +805,20 @@ a {
   background: rgba(59, 130, 246, 0.12);
   padding: 3px 9px;
   border-radius: 999px;
+}
+
+.tie-dates-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 10.5px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.tie-dates-row strong {
+  color: var(--text-primary);
 }
 
 .tie-team-row {
@@ -811,6 +972,14 @@ a {
     align-items: stretch;
   }
 
+  .fixture-date-tile {
+    flex-direction: row;
+    width: auto;
+    align-self: flex-start;
+    gap: 6px;
+    order: 0;
+  }
+
   .fixture-teams {
     order: 1;
   }
@@ -823,6 +992,11 @@ a {
   .tv-badge-group {
     order: 3;
     justify-content: center;
+  }
+
+  .status-badge {
+    order: 4;
+    align-self: flex-start;
   }
 
   .score-input {
