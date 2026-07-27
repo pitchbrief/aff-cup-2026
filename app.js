@@ -40,27 +40,27 @@
 
   // Original seed fixtures — used both as initial state and as the "Reset" target.
   var SEED_FIXTURES = [
-    { id: "A1", group: "A", date: "24 Jul", time: "15:30 WIB", home: "CAM", away: "SGP", homeScore: 1, awayScore: 2, tv: ["inews", "gtv"] },
-    { id: "A2", group: "A", date: "24 Jul", time: "19:30 WIB", home: "TLS", away: "VIE", homeScore: 0, awayScore: 7, tv: ["inews", "gtv"] },
-    { id: "A3", group: "A", date: "27 Jul", time: "15:30 WIB", home: "SGP", away: "TLS", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "A4", group: "A", date: "27 Jul", time: "19:30 WIB", home: "IDN", away: "CAM", homeScore: null, awayScore: null, tv: ["rcti"] },
-    { id: "A5", group: "A", date: "31 Jul", time: "15:30 WIB", home: "TLS", away: "IDN", homeScore: null, awayScore: null, tv: ["rcti"] },
-    { id: "A6", group: "A", date: "31 Jul", time: "19:30 WIB", home: "VIE", away: "SGP", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "A7", group: "A", date: "03 Aug", time: "15:30 WIB", home: "CAM", away: "TLS", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "A8", group: "A", date: "03 Aug", time: "19:30 WIB", home: "IDN", away: "VIE", homeScore: null, awayScore: null, tv: ["rcti"] },
-    { id: "A9", group: "A", date: "07 Aug", time: "15:30 WIB", home: "SGP", away: "IDN", homeScore: null, awayScore: null, tv: ["rcti"] },
-    { id: "A10", group: "A", date: "07 Aug", time: "19:30 WIB", home: "VIE", away: "CAM", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "A1", group: "A", date: "24 Jul", time: "19:00 WIB", home: "CAM", away: "SGP", homeScore: 1, awayScore: 2, tv: ["inews", "gtv"] },
+    { id: "A2", group: "A", date: "24 Jul", time: "20:30 WIB", home: "TLS", away: "VIE", homeScore: 0, awayScore: 7, tv: ["inews", "gtv"] },
+    { id: "A3", group: "A", date: "27 Jul", time: "18:00 WIB", home: "SGP", away: "TLS", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "A4", group: "A", date: "27 Jul", time: "20:30 WIB", home: "IDN", away: "CAM", homeScore: null, awayScore: null, tv: ["rcti"] },
+    { id: "A5", group: "A", date: "31 Jul", time: "17:00 WIB", home: "TLS", away: "IDN", homeScore: null, awayScore: null, tv: ["rcti"] },
+    { id: "A6", group: "A", date: "31 Jul", time: "20:00 WIB", home: "VIE", away: "SGP", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "A7", group: "A", date: "03 Agu", time: "17:30 WIB", home: "CAM", away: "TLS", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "A8", group: "A", date: "03 Agu", time: "20:30 WIB", home: "IDN", away: "VIE", homeScore: null, awayScore: null, tv: ["rcti"] },
+    { id: "A9", group: "A", date: "07 Agu", time: "20:00 WIB", home: "SGP", away: "IDN", homeScore: null, awayScore: null, tv: ["rcti"] },
+    { id: "A10", group: "A", date: "07 Agu", time: "20:00 WIB", home: "VIE", away: "CAM", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
 
-    { id: "B1", group: "B", date: "25 Jul", time: "15:30 WIB", home: "MYA", away: "MAS", homeScore: 1, awayScore: 2, tv: ["inews", "gtv"] },
-    { id: "B2", group: "B", date: "25 Jul", time: "19:30 WIB", home: "LAO", away: "THA", homeScore: 0, awayScore: 5, tv: ["inews", "gtv"] },
-    { id: "B3", group: "B", date: "28 Jul", time: "15:30 WIB", home: "PHI", away: "MYA", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "B4", group: "B", date: "28 Jul", time: "19:30 WIB", home: "MAS", away: "LAO", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "B5", group: "B", date: "01 Aug", time: "15:30 WIB", home: "LAO", away: "PHI", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "B6", group: "B", date: "01 Aug", time: "19:30 WIB", home: "THA", away: "MAS", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "B7", group: "B", date: "04 Aug", time: "15:30 WIB", home: "MYA", away: "LAO", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "B8", group: "B", date: "04 Aug", time: "19:30 WIB", home: "PHI", away: "THA", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
-    { id: "B9", group: "B", date: "08 Aug", time: "15:30 WIB", home: "THA", away: "MYA", homeScore: null, awayScore: null, tv: ["gtv", "inews"] },
-    { id: "B10", group: "B", date: "08 Aug", time: "19:30 WIB", home: "MAS", away: "PHI", homeScore: null, awayScore: null, tv: ["gtv", "inews"] }
+    { id: "B1", group: "B", date: "25 Jul", time: "17:00 WIB", home: "MYA", away: "MAS", homeScore: 1, awayScore: 2, tv: ["inews", "gtv"] },
+    { id: "B2", group: "B", date: "25 Jul", time: "20:00 WIB", home: "LAO", away: "THA", homeScore: 0, awayScore: 5, tv: ["inews", "gtv"] },
+    { id: "B3", group: "B", date: "28 Jul", time: "17:00 WIB", home: "PHI", away: "MYA", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "B4", group: "B", date: "28 Jul", time: "20:00 WIB", home: "MAS", away: "LAO", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "B5", group: "B", date: "01 Agu", time: "17:00 WIB", home: "LAO", away: "PHI", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "B6", group: "B", date: "01 Agu", time: "20:00 WIB", home: "THA", away: "MAS", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "B7", group: "B", date: "04 Agu", time: "17:00 WIB", home: "MYA", away: "LAO", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "B8", group: "B", date: "04 Agu", time: "20:00 WIB", home: "PHI", away: "THA", homeScore: null, awayScore: null, tv: ["inews", "gtv"] },
+    { id: "B9", group: "B", date: "08 Agu", time: "20:00 WIB", home: "THA", away: "MYA", homeScore: null, awayScore: null, tv: ["gtv", "inews"] },
+    { id: "B10", group: "B", date: "08 Agu", time: "20:00 WIB", home: "MAS", away: "PHI", homeScore: null, awayScore: null, tv: ["gtv", "inews"] }
   ];
 
   var SEED_KNOCKOUT = {
